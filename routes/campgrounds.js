@@ -11,7 +11,6 @@ router.get('/', catchAsync(campgrounds.index))
 
 // create new campground
 router.get('/new',isLoggedIn, campgrounds.renderNewFrom)
-
 router.post('/',isLoggedIn,validateCampground, catchAsync(campgrounds.createCampground))
 
 // show single campground details
@@ -19,7 +18,6 @@ router.get('/:id',catchAsync(campgrounds.showCampground))
 
 // edit the campgroundinformation
 router.get('/:id/edit',isLoggedIn,isAuthor,catchAsync(campgrounds.renderEditForm))
-
 router.put('/:id',isLoggedIn,isAuthor,validateCampground,catchAsync(campgrounds.updateCampground))  
 
 // delete the campground
