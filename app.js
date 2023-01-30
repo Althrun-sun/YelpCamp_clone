@@ -26,7 +26,7 @@ const MongoDBStore = require("connect-mongo")(session);
 
 const localDB= 'mongodb://127.0.0.1:27017/yelp-camp'
 const cloudDB = process.env.DB_URL
-const dbUrl = localDB
+const dbUrl = cloudDB
 mongoose.connect(dbUrl
 // ,{
 //     useNewUrlParser:true,
