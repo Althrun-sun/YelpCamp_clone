@@ -1,7 +1,6 @@
 if(process.env.NODE_ENV!=='production'){
     require('dotenv').config()
 }
-console.log(process.env.secret)
 
 const express = require('express')
 const path=require('path')
@@ -22,7 +21,13 @@ const reviewRoutes = require('./routes/reviews')
 const userRoutes = require('./routes/users')
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/yelp-camp'
+const MongoDBStore = require("connect-mongo")(session);
+
+
+const localDB= 'mongodb://127.0.0.1:27017/yelp-camp'
+const cloudDB = process.env.DB_URL
+const dbUrl = localDB
+mongoose.connect(dbUrl
 // ,{
 //     useNewUrlParser:true,
 //     useCreateIndex:true,
@@ -45,8 +50,23 @@ app.set('views',path.join(__dirname,'views'))
 app.use(express.urlencoded({extended: true }))
 app.use(methodOveride('_method'))
 app.use(express.static(path.join(__dirname,'public')))
+
+const secret = 'thisshouldbeabettersecret!';
+
+const store = new MongoDBStore({
+    url: dbUrl,
+    secret,
+    touchAfter: 24 * 60 * 60
+});
+
+store.on("error", function (e) {
+    console.log("SESSION STORE ERROR", e)
+})
+
 const sessionConfig = {
-    secret:'Itshoutbebettersecret',
+    store,
+    name: 'session',
+    secret,
     resave:false,
     saveUninitialized:true,
     cookie:{
