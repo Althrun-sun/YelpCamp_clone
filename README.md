@@ -31,6 +31,10 @@ YelpCamp is a powerful GIS-based system that allows users to browse, publish, an
 
 YelpCamp is a web application that integrates advanced GIS systems and user management features to provide a comprehensive platform for browsing, publishing, and managing campgrounds. Users can access detailed information about campgrounds, including pricing, location, and more. The platform also includes a rating and review system, allowing users to share their experiences and insights.
 
+## Sketch
+![image](https://user-images.githubusercontent.com/81791425/234163252-c9a78ddf-c486-46ab-9f24-0365ff48c50d.png)
+
+
 ## Features
 
 - User management and session control: Users can register, log in, and log out with ease. Middleware is used to manage permissions between different users and functionalities. Session control ensures that users do not need to log in frequently.
